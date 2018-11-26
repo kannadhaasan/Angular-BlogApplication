@@ -1,0 +1,77 @@
+<div *ngIf="post" class="container">
+  <h4 class="txt-col">{{post.title}}</h4>
+  <br>
+  <div class="row">
+    <div class="col-md-1"></div>
+    <h6 class="col-md-5">
+      <label><b>Title:</b></label>
+      {{post.title}}
+    </h6>
+    <h6 class="col-md-5">
+      <label><b>Publish Date:</b></label>
+        {{post.publish_date}}
+    </h6>
+  </div>
+  <div class="row">
+    <div class="col-md-1"></div>
+      <h6 class="col-md-5">
+        <label><b>Author:</b></label>
+        {{post.author}}
+      </h6>
+      <h6 class="col-md-5">
+        <label><b>Slug:</b></label>
+          {{post.slug}}
+      </h6>
+    </div>
+    <div class="row">
+      <div class="col-md-1"></div>
+      <div class="col-md-10 space">
+        <label><b>Description:</b></label>
+          {{post.description}}
+      </div>
+      <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+            <label><b>Summary:</b></label>
+            <div [innerHtml]="post.content"></div>
+        </div>
+      </div>
+    </div>
+    <hr>
+    <div class="row">
+      <div class="col-md-1"></div>
+      <div class="col-md-6"><h5 class="txt-col">Comments</h5></div>
+    </div>
+    <div *ngFor="let item of comments">
+      <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-9">
+            <strong>{{item.user}}</strong> <span class="text-muted"> commented on {{item.date}}</span>
+            <p>{{item.content}}</p>
+            <hr>
+        </div>
+      </div>
+    </div>
+
+    <!-- Add Comment -->
+    <div class="row">
+      <div class="col-md-1"></div>
+      <div class="col-md-10">
+
+          <form #loginForm (ngSubmit)="addComment()">
+              <input type="text" [formControl]="nameFormControl" [(ngModel)]="newComment.user" #name class="form-control space" id="name" placeholder="Enter User Name">
+              <div *ngIf="nameFormControl.hasError('required')" class="danger">
+                  Comment is required
+                </div>
+              <textarea class="form-control space" [formControl]="commentFormControl" rows="3" [(ngModel)]="newComment.content" placeholder="Add Comment"></textarea>
+              <div *ngIf="commentFormControl.hasError('required')" class="danger">
+                Comment is required
+              </div>
+              <button class="btn btn-default">Add Comment</button>
+            </form>
+        
+      </div>
+    </div>
+
+
+</div>

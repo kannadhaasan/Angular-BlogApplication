@@ -1,0 +1,39 @@
+<div class="container">
+  <h3 class="heading">List of Blogs</h3>
+
+  <table class="table" >
+      <tr>
+          <th>
+              Title
+          </th>
+          <th>
+              Author
+          </th>
+          <th>
+              Publish Date
+          </th>
+        <th>
+            Description
+        </th>
+          <th>
+            Action
+          </th>
+      </tr>
+      <tr *ngFor="let p of posts">
+          <td>
+              {{p.title}}
+          </td>
+          <td>
+              {{p.author}}
+          </td>
+          <td>
+              {{p.publish_date}}
+          </td>
+        <td>
+            {{p.description}}
+        </td>
+          <td>
+              <button class="btn btn-primary" [routerLink]="['/post',p.id]">View Detail</button>
+          </td>
+      </tr>
+  </table>
